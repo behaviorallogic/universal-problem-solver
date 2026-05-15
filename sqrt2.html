@@ -1,0 +1,60 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<title>Square Root</title>
+
+<body>
+<h1>Square Root of 2</h1>
+<p>For reference, √2 to 20 significant digits is 1.4142135623730950488</p>
+<p><label>Precision: <input type="number" id="precisionInput" min="1" max="16" step="1" value="4"></label>
+<p><button onclick="displaySquareRootOfTwo()">Search randomly</button>
+<p><button onclick="displaySquareRootOfTwoRefined()">Search with refinement</button>
+<p id="result"></p>
+
+<script>
+var totalIdeas = 0;
+
+function squareRootOfTwo(sigFigs) {
+    totalIdeas = 0;
+    var idea = Math.random() + 1;
+    while ((idea * idea).toPrecision(sigFigs) !== (2).toPrecision(sigFigs)) {
+        idea = Math.random() + 1;
+        totalIdeas++;
+    }
+    return idea;
+}
+
+function displaySquareRootOfTwo() {
+    var precision = parseInt(document.getElementById('precisionInput').value) || 4;
+    var result = squareRootOfTwo(precision);
+    var formattedResult = `${result.toPrecision(precision)} in ${totalIdeas.toLocaleString()} tries`;
+    document.getElementById('result').textContent = formattedResult;
+}
+
+
+function squareRootOfTwoScopeRefined(sigFigs) {
+    totalIdeas = 0;
+
+    var min = 1;
+    var max = 2;
+    var idea = Math.random() * (max - min) + min;
+    while ((idea * idea).toPrecision(sigFigs) !== (2).toPrecision(sigFigs)) {
+        if (idea * idea < 2) {
+            min = idea;
+        } else {
+            max = idea;
+        }
+        idea = Math.random() * (max - min) + min;
+        totalIdeas++;
+    }
+    return idea;
+}
+
+function displaySquareRootOfTwoRefined() {
+    var precision = parseInt(document.getElementById('precisionInput').value) || 4;
+    var result = squareRootOfTwoScopeRefined(precision);
+    var formattedResult = `${result.toPrecision(precision)} in ${totalIdeas.toLocaleString()} tries`;
+    document.getElementById('result').textContent = formattedResult;
+}
+
+</script>
