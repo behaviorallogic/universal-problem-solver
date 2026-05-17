@@ -7,7 +7,7 @@
 <h1>Square Root of 2</h1>
 <p>For reference, √2 to 20 significant digits is 1.4142135623730950488</p>
 <p><label>Precision: <input type="number" id="precisionInput" min="1" max="16" step="1" value="4"></label>
-<p><button onclick="displaySquareRootOfTwo()">Search randomly</button>
+<p><button onclick="displaySquareRootOfTwo()">Search randomly</button> (I would not attempt a precision higher than 9 unless you want your computer to freeze up.)
 <p><button onclick="displaySquareRootOfTwoRefined()">Search with refinement</button>
 <p id="result"></p>
 
@@ -15,7 +15,7 @@
 var totalIdeas = 0;
 
 function squareRootOfTwo(sigFigs) {
-    totalIdeas = 0;
+    totalIdeas = 1;
     var idea = Math.random() + 1;
     while ((idea * idea).toPrecision(sigFigs) !== (2).toPrecision(sigFigs)) {
         idea = Math.random() + 1;
@@ -33,7 +33,7 @@ function displaySquareRootOfTwo() {
 
 
 function squareRootOfTwoScopeRefined(sigFigs) {
-    totalIdeas = 0;
+    totalIdeas = 1;
 
     var min = 1;
     var max = 2;
